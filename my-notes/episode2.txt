@@ -1,0 +1,115 @@
+we need not keep track of node_modules. but need to track package.json and package-lock.json
+
+
+if we have package.json and package-lock.json, we can recreate the node modules. so we need not track the node_modules. even we can delete the node_moduesl. they will be recreated.
+for this we can write nom install in terminal and it recreates the node modules.
+
+
+=> npx parcel index.html -> for hosting our app on sever.
+
+npx : just like we have npm, similarly we have npx. 
+npx means executing a package.
+npm is for installing and npx is for executing.
+
+
+why creating it by npm ctaerte-react app is preferred than using the cdn links?
+1. using thriugh cdn links is a costly operation. as we will have react already in our node modukles, we need not call the api and get react speratel.y
+2. as versions of react changes, we should keep changing the url everytime.
+
+command to add react : npm install react.
+we are not writing it as npm install -D react, because we need it as a normal deoendency, not as a dev dependency.
+
+
+#parcel:
+-- dev build
+-- local server
+-- hmr - hot module replacement. (because of this only, the page will be automatically reloaded when we change / modify anything).
+-- parcel uses a file watching algorithm, which is written in c++, becaus eof which hmr is happening.
+-- parcel gives us fastre build becaus eof caching
+-- where it is caching things? maintains .parcel-cache files
+-- it also does image optimisation
+-- minification of our file
+-- bundling
+-- compress our files
+-- consistent hashing 
+-- code splitting
+-- differential bundling - to suppport older browsers
+-- give option of hosting on https also
+-- parcel.org is the site
+-- tree shaking - remove unused code for us
+-- it creates dev and production bundles seperately
+-- can add browsers list where our app can run
+
+
+
+
+
+Chapter 02 - Assignment - Igniting our App
+Please Note: Write the answers and code on your own while finishing your assignments. Try to
+put down your thoughts into words by yourself in your own words. (This will help you develop
+muscle memory and you will remember all the concepts properly) ✌
+# Theory Assignment:
+● - What is `NPM`?
+doesnot stand for node package manager, but yes it has many packages inside it, which can be used in our project.
+● - What is `Parcel/Webpack`? Why do we need it?
+parcel is one of the best opackages which can be installed from npm. it does many things to our project like - 
+-- dev build
+-- local server
+-- hmr - hot module replacement. (because of this only, the page will be automatically reloaded when we change / modify anything).
+-- parcel uses a file watching algorithm, which is written in c++, becaus eof which hmr is happening.
+-- parcel gives us fastre build becaus eof caching
+-- where it is caching things? maintains .parcel-cache files
+-- it also does image optimisation
+-- minification of our file
+-- bundling
+-- compress our files
+-- consistent hashing 
+-- code splitting
+-- differential bundling - to suppport older browsers
+-- give option of hosting on https also
+-- parcel.org is the site
+-- tree shaking - remove unused code for us
+-- it creates dev and production bundles seperately
+-- can add browsers list where our app can run
+● - What is `.parcel-cache`
+when ever we run build, it creates  partial cache folders, so that the build time decreases becaus eof caching.
+● - What is `npx` ?
+while nom is used for installing a package, npx command is used to execute a package.
+● - What is difference between `dependencies` vs `devDependencies`
+
+● - What is Tree Shaking?
+● - What is Hot Module Replacement?
+the build will be done automaticallky when ever we make any change in our files. we need not start server gain and again after every change we make.
+● - List down your favourite 5 superpowers of Parcel and describe any 3 of them in your
+own words.
+● - What is `.gitignore`? What should we add and not add into it?
+all the files/folders which can be regenerated can be added inside .gitignore because they need not be be tracked by git.
+● - What is the difference between `package.json` and `package-lock.json`
+packag.json can have the approximate versions but the package-lock.json will have the exact versions of all the packages installed.
+● - Why should I not modify `package-lock.json`?
+● - What is `node_modules` ? Is it a good idea to push that on git?
+when ever we indtall a package, all teh dependency paclages will also be installed and kept under node_modules folder. we should add this inside .gitignore because they can be regenerated if the package.json and package-l;ock.json files are present.
+● - What is the `dist` folder?
+this contains the minimized/optimised version of our code which is ready for production.
+● - What is `browserlists`
+we can mention on which devices our project can work., this doesnot mean it will not work on other browsers. it might or mightnot work on otehr browsers. but it will definitely work on the mentioned browsers list.
+
+Read about dif bundlers: vite, webpack, parcel
+● Read about: ^ - caret and ~ - tilda
+● Read about Script types in html (MDN Docs)
+# Project Assignment:
+- In your existing project
+● - intialize `npm` into your repo
+● - install `react` and `react-dom`
+● - remove CDN links of react
+● - install parcel
+● - ignite your app with parcel
+● - add scripts for “start” and “build” with parcel commands
+● - add `.gitignore` file
+● - add `browserlists`
+● - build a production version of your code using `parcel build`
+# References
+● Creating your own create-react-app
+● Parcel Documentation
+● Parcel on Production
+● BrowsersList: https://browserslist.dev/
