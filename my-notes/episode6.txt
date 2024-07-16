@@ -1,0 +1,585 @@
+#notes
+
+Exploring The World!(Namaste-React) 1
+Exploring The World!(NamasteReact)
+💡 I've got a quick tip for you. To get the most out of these notes, it's a
+good idea to watch Episode-6 first. Understanding what ”Akshay” shares in
+the video will make these notes way easier to understand.
+Here are two quick stories:
+⬇️ In the web development world, we often hear that the
+trend is leaning from ’Monolithic’ towards the
+’Microservices’ architecture.
+󾠮 Atlassian's Shift: Back in 2018, ‘Atlassian’ faced some
+growing pains. To keep up with demand and stay flexible,
+they switched to microservices. This move helped them
+stay agile and scale up smoothly.
+Exploring The World!(Namaste-React) 2
+󾠯 Netflix's Transformation : The popular video streaming
+platform over in the world ‘Netflix’ runs on AWS. They
+started with a monolith and moved to microservices.
+📢 In today's episode, we discussed the trend towards
+lighter and more adaptable web architectures.
+PART-1
+Q) What are ‘Monolithic’ and ‘Microservices’ architectures exactly?
+ Understanding ‘Monolith’ and ‘Microservices’ architectures is a big deal in
+software development, but as developers, it's important to grasp the basics. So,
+in this episode, we'll break it down into simple terms.
+Monolithic Architecture
+Exploring The World!(Namaste-React) 3
+In the past, we used to build large projects where everything was bundled
+together. Imagine building an entire application where all the code—APIs, user
+interface, database connections, authentication, even notification services—
+resides in one massive project with single code base.
+Size and Complexity Limitation: Monolithic applications become too large and
+complex to understand.
+Slow Startup: The application's size can slow down startup time.
+Full Deployment Required: Every update requires redeploying the entire
+application.
+Limited Change Understanding: It's hard to grasp the full impact of changes,
+leading to extensive manual testing.
+Difficult Continuous Deployment: Implementing continuous deployment is
+challenging.
+Scaling Challenges: Different modules may have conflicting resource needs,
+making scaling difficulty.
+Reliability Concerns: Bugs in any module can crash the whole application,
+affecting availability.
+Adoption of New Technologies: Making changes in frameworks or languages is
+expensive and time-consuming since it affects the entire application.
+Microservices Architecture
+The idea is to split your application into a set of smaller, interconnected
+services instead of building a single monolithic application. Each service handles
+a specific job, like handling user accounts or managing payments. Inside each
+service, there's a mini-world of its own, with its own set of rules (business
+logic) and tools (adapters). Some services talk to each other in different ways,
+like using REST or messaging. Others might even have their own website!
+Simpler Development: Microservices break down complex applications into
+smaller, easier-to-handle services. This makes development faster and
+maintenance easier.
+Independent Teams: Each service can be developed independently by a team
+focused on that specific task.
+Flexibility in Technology: Developers have the freedom to choose the best
+technologies for each service, without being tied to choices made at the
+project's start.
+Continuous Deployment: Microservices allow for independent deployment, enabling
+continuous deployment for complex applications.
+Scalability: Each service can be scaled independently, ensuring efficient
+resource usage.
+Exploring The World!(Namaste-React) 4
+Separation of Concerns: With each task having its own project, the architecture
+stays organized and manageable.
+Single Responsibility: Every service has its own job, following the principle
+of single responsibility. This ensures focused and efficient development.
+Q) Why Microservices?
+ Breaking things down into microservices helps us work faster and smarter. We
+can update or replace each piece without causing a fuss. It's like having a welloiled machine where each part does its job perfectly.
+Q) How do these services interact with each other?
+ In our setup, the UI microservice is written in React, which handles the user
+interface.
+Communication Channels
+These services interact with each other through various communication channels.
+For instance, the UI microservice might need data from the backend microservice,
+which in turn might need to access the database.
+Ports and Domain Mapping
+Each microservice runs on its specific port. This means that different services
+can be deployed independently, with each one assigned to a different port. All
+these ports are then mapped to a domain name, providing a unified access point for
+the entire application.
+PART-2
+Connecting to the External World
+In this episode, we're going to explore how our React application communicates
+with the outside world. We'll dive into how our application fetches data and
+seamlessly integrates it into the user interface. It's all about understanding
+data exchange that makes our app come alive.
+In our Body component, we're displaying a list of restaurants. Initially, we used
+mock data inside the ‘ useState() ’ hook to create a state variable. However, in this
+episode, we're stepping up our game by fetching real-time data from Swiggy's API
+and displaying it dynamically on the screen. How cool is that? 🤩
+Before diving in, let's understand two approaches to fetch and render the data :
+1. Load and Render:
+We can make the API call as soon as the app loads, fetch the data, and render it.
+2. Render First Fetch Later:
+Alternatively, we can quickly render the UI when the page loads we could show the
+structure of the web page, and then make the API call. Once we get the data, we
+Exploring The World!(Namaste-React) 5
+re-render the application to display the updated information.
+In React, we're opting for the second approach. This approach enhances user
+experience by rendering the UI swiftly and then seamlessly updating it once we
+receive the data from the API call.
+PART-3
+Today, we're diving into another important topic ‘ useEffect() ’ We've mentioned it
+before in a previous episode. Essentially, ‘ useEffect() ’ is a Hook React provides
+us, it is a regular JavaScript function, to help manage our components.
+To start exploring its purpose, let's first import it from React.
+import { useEffect } from "react";
+‘ useEffect() ' takes two arguments .
+1. Callback function.
+2. Dependency Array.
+// Syntax of useEffect()
+// We passed Arrow function as callback function.
+useEffect(() => {}, []);
+Q) When will the callback function get called inside the useEffect()?
+ Callback function is getting called after the whole component get rendered.
+In our app we are using ’ useEffect() ' inside Body component. So it will get called
+once Body component complete its render cycle.
+If we have to do something after the rendercycle complets we can pass it inside
+the ‘ useEffect() ' . this is the actual use case of useEffect. It is really helpful
+to render data which we will get after the ‘ fetch() ' operation and we are going to
+follow second approach which we have discussed already.
+Q) Where we fetch the data?
+ inside the ‘
+useEffect() ' we use ‘ fetchData() ' function to fetch data from the external world. don’t
+worry we will see each and every steps in detail.
+logic of fetching the data is exactly the same that we used to do in javascript.
+here we are fetching the swiggy’s API.
+Exploring The World!(Namaste-React) 6
+📢 IMPORTANT:
+If getting difficulty to understand
+fetch() , Don’t worry please read about how fetch() works.
+Fetch basic concepts - Web APIs | MDN
+The Fetch API provides an interface for fetching resources
+(including across the network). It will seem familiar to anyone who
+has used XMLHttpRequest, but it provides a more powerful and
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Basic_
+concepts
+Q) How can we use Swiggys API in our App?
+ We know that ‘
+fetch() ’ always return promise to us. we can handle response using ‘ .then() ’ method.
+but here we are using newer approach using ‘async/await’ to handle the promise.
+we convert this data to javascript object by using ‘ .json '
+// here once the body component would have been rendered , we will fetch the d
+ata
+useEffect(() => {
+ fetchData();
+}, []);
+const fetchData = async () => {
+ const data = await fetch(
+ "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.9615398&lng=79.296
+1468&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+ );
+ const json = await data.json();
+ console.log(json);
+};
+Q) By using above code let’s see can we able to call swiggy’s api sucessfully or
+not?
+ We got an error 😅 (refer fig 6.1)
+Exploring The World!(Namaste-React) 7
+Q) What is the reasone we got that error?
+ Basically calling swiggy’s API from local host has been blocked due to CORS
+policy.
+Q) What exactly the CORS policy is?
+ (Cross-Origin Resource Sharing) is a system, consisting of transmitting HTTP
+headers, that determines whether browsers block frontend JavaScript code from
+accessing responses for cross-origin requests.
+In simpler terms, CORS (Cross-Origin Resource Sharing) is a security feature
+implemented by browsers that restricts web pages from making requests to a
+different origin (domain) than the one from which it was served. Therefore, when
+trying to call Swiggy's API from localhost, the browser blocks the request due to
+CORS restrictions.
+📢 IMPORTANT:
+If getting difficulty to understand CORS, Don’t worry please read the
+below document
+CORS - MDN Web Docs Glossary: Definitions of Web-related terms | MDN
+CORS (Cross-Origin Resource Sharing) is a system, consisting of transmitting
+HTTP headers, that determines whether browsers block frontend JavaScript code
+from accessing responses for cross-origin requests.
+https://developer.mozilla.org/en-US/docs/Glossary/CORS
+https://www.youtube.com/watch?v=tcLW5d0KAYE
+fig 6.1
+Exploring The World!(Namaste-React) 8
+📢 IMPORTANT!
+To prevent CORS errors when using APIs, utilize a CORS extension and
+activate it.
+📢 IMPORTANT!
+In future swiggy definately change their API data so always remember go to
+swiggy’s website and copy the updated URL of API to fetch data.
+To show the new data on our page, we just need to update the ‘
+listOfRestaurant ' with the fresh info. React will then refresh the page to display the
+updated data.
+Q) How do we Update the data ?
+ We're updating the ‘
+listOfRestaurant ' using a state variable we've already defined. We simply use the
+‘ setlistOfRestaurant() ' function to replace the old data with the new.
+const fetchData = async () => {
+ const data = await fetch(
+ "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.9615398&lng=79.296
+1468&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+ );
+ const json = await data.json();
+ setListOfRestaurant(
+ json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+ );
+};
+Exploring The World!(Namaste-React) 9
+🌈 our App making live call to the external world getting the data and render
+on the screen. Amazing
+Congratulations we have successfully fetch and
+render the data 🎉🎊
+📢 IMPORTANT:
+As we delve into the JSON data, it's essential to note its complexity. Our
+focus lies solely on extracting cards which have restaurant information
+for our project.
+Attempting to directly implement the code snippet provided here definitely
+results in errors due to potential changes in Swiggy's API structure. Your
+understanding is greatly appreciated during this phase. Focus on the
+concept of whatever Akshay taught us in this Episode.
+NOTE: In the upcoming episode, ‘Akshay’ addresses all API-related issues,
+ensuring a smoother experience. So, don't stress—everything will be
+resolved in the upcoming episode.
+Happy coding!
+PART-4
+Exploring The World!(Namaste-React) 10
+After fetching the data, there's a noticeable one-second delay before it appears
+on the screen. This delay occurs because the APIs take some time to load.
+Improving this can enhance the user experience.
+Q) How could we improve it?
+ To enhance the user experience, we could add a spinning loader that appears
+while we wait for the data to load from the APIs. This provides visual feedback to
+the user and indicates that the application is working to retrieve the
+information.
+We could implement a condition to display a spinning loader if our list of
+restaurants hasn't received any data yet.
+if (listOfRestaurant.length === 0) {
+ return <h1>loading. . .</h1>;
+}
+Refreshing the page to see the result,but this isn't an ideal approach. Instead,
+we can enhance the user experience by implementing a ‘Shimmer UI’.
+Shimmer UI
+Shimmer UI is a technique that shows placeholder content while data is loading,
+reducing wait time and keeping users engaged.
+Instead of displaying a generic "loading" message, we'll integrate a <shimmer/>
+component within our app to provide visual feedback while data is loading. this
+concept is known as ‘conditional rendering‘.
+// conditional rendering
+if (listOfRestaurant.length === 0) {
+ return <Shimmer/>;
+}
+PART-5
+Use of ternery oerator in our code base.
+return listOfRestaurant.length === 0 ? (
+ <Shimmer />
+) : (
+ <div className="container body">
+ <div className="filter">
+ <button
+ className="filter-btn"
+Exploring The World!(Namaste-React) 11
+ onClick={() => {
+ const filterLogic = listOfRestaurant.filter((res) => {
+ return res.info.avgRating > 4.2;
+ });
+ setListOfRestaurant(filterLogic);
+ }}
+ >
+ Top Restaurants
+ </button>
+ </div>
+ <div className="ReastaurantContainer">
+ {listOfRestaurant.map((restaurant) => (
+ <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+ ))}
+ </div>
+ </div>
+);
+Q) Why do we need State variable?
+ Many developers have this confusion today we will see that Why with the help of
+following example:
+to understand this we will introduce on feature in our app is a ‘login/logout’
+button
+Inside Header component we are adding the button look at the code given below.
+also we want to make that login keyword dynamic it should change to logout after
+clicking.
+step1 ——>
+We create ‘ btnName ' variable with login string stored in it and we are going use
+that btnName as a button text look at the code below
+step2 ——>
+Upon clicking this button, it changes to ‘logout’.
+// Step 1-->
+const btnName = "Login";
+return (
+ <div className="container header">
+ <a>logo</a>
+ {navItems}
+ <button
+ className="login"
+ onclick={() => {
+ btnName = "Logout";
+Exploring The World!(Namaste-React) 12
+ }}
+ >
+ {btnName}
+ </button>
+ </div>
+);
+But it will not change 😒.
+It's frustrating that despite updating the ‘ btnName ' value and seeing the change
+reflected in the console, the UI remains unchanged. This happens because we're
+treating ‘ btnName ' as a regular variable. To address this issue, we need a
+mechanism that triggers a UI refresh whenever ‘ btnName ' is updated
+To ensure UI updates reflect changes in ‘
+btnName ', we may need to use state management that automatically refreshes the UI
+when data changes. that the reasone we need state variable ‘ useState() '.
+Let's utilize ‘ reactBtn ' as a state variable using ‘ useState() ' instead of btnName
+Here's the code:
+const [reactBtn, setReactBtn] = useState("login");
+To update the default value of ‘ reactBtn ', we use ‘ setReactBtn 'function.
+📢 NOTE:
+In React, we can't directly update a state variable like we would use a
+normal JavaScript variable. Instead, we must use the function provided by
+the ‘
+useState() ' hook. This function allows us to update the state and triggers a
+re-render of the component, ensuring our UI is always up-to-date with the
+latest state.
+With the code provided below, we've enhanced the functionality of our app. Now, we
+can seamlessly toggle between "login" and "logout" states using a ternary
+operator. This addition greatly improves the user experience.
+const [reactBtn, setReactBtn] = useState("login");
+return (
+<div className="container header">
+<a>logo</a>
+{navItems}
+<button
+Exploring The World!(Namaste-React) 13
+className="login"
+onClick={() => {
+reactBtn === "login"
+? setReactBtn("logout")
+: setReactBtn("login");
+}}
+>
+{reactBtn}
+</button>
+</div>
+);
+📢 NOTE :
+The interesting aspect of the above example is how we manage to modify a
+const variable like ‘ reactBtn ', which traditionally isn't possible. However,
+because React rerenders the entire component when a state variable
+changes, it essentially creates a new instance of ‘ reactBtn ' with the
+updated value. So, in essence, we're not updating ‘ reactBtn '; instead, React
+creates a new one with the modified value each time the state changes.
+This is the beauty of React.
+PART-6
+lets add another feature in our React app , search functionality.
+When you input text into the search field, it provides suggestions based on the
+data related to restaurants that we already have.
+step 1 ——>
+Let's create a search bar within a <div> element and assign any class name of your
+choice to it. Additionally, we'll give class names to the input field and button
+inside the search bar.
+step 2 ——>
+Upon clicking the button, filter the restaurant cards and update the UI to
+retrieve data from the input box. To link our input to the button, we'll use the
+value attribute within the input field and bind that value to a local state
+variable. We'll create a local state variable named searchText along with a function
+named setSearchText to update the value. lets see below code will work or not by
+simple puting the call back function. 
+Exploring The World!(Namaste-React) 14
+const [searchText, setsearchText] = useState("");
+<div className="search">
+ <input type="text" className="search-box" value={searchText} />
+ <button className="searchBtn" onClick={() => {
+ console.log(searchText);
+ }}>
+ Search
+ </button>
+</div>;
+we could see that our input not taking value. we unable to type any thing.
+we knew already we have bind this searchText to the input field. what ever is
+inside the searchText variable will inside the value attribute of the input
+field.
+when we will change the value of input field by typing on it still it will tied
+to the searchText but searchText is not Updating . because default value of
+search text is empty string .this is most import point to understand whole
+concept. this input box not changed unless we change the search text
+Q) How could we solve this problem ?
+ to solve this we have to add ‘ onChange ' eventHandler inside the input field, so
+as soon as input changes the onchange call back function should also be changed
+the input text.
+inside the onchange event handler we have event ‘e’ inside the call back . so
+access that typed input by using event ‘e’ see the code
+ <input type="text" className="search-box" value={searchText}
+ onchange={(e)=>{setSearchText(e.target.value)}/>
+based on the on change we have make in the code now we can type inside the
+search box and see the output inside the console.
+📢 NOTE: when ever search text is change on the every key press state
+variable re render the component. its find the difference between every
+updated V-DOM with new text added inside the input field with older one.
+Step 3 ——>
+ We're currently filtering the list of restaurants to update the UI. When we
+type a word in the input field, it filters out the restaurant cards based on
+Exploring The World!(Namaste-React) 15
+whether the typed word matches any restaurant names. However, we're facing a
+challenge with the input field being case-sensitive. We want the suggestions to be
+based solely on the word typed, without considering whether it's in uppercase or
+lowercase.
+Q) How could we solve this problem ?
+ To fix the problem, we just need to use the code provided. It uses ‘ toLowerCase() '
+to make our search bar insensitive to capitalization.
+<button
+ className="searchBtn"
+ onClick={() => {
+ // filter the Restaurant and update the UI
+ const filtertheRestaurant = listOfRestaurant.filter((res) => {
+ return res.info.name.toLowerCase().includes(searchText.toLowerCase());
+ });
+ setListOfRestaurant(filtertheRestaurant);
+ }}
+>
+ Search
+</button>;
+Step 4 ——>
+We've encountered another issue in our app: after searching for a restaurant, the
+UI doesn't render anything when we search again. Instead, we only see the Shimmer
+UI.
+How could we solve this problem ?
+ here problem is when we search 1st time we are updating ‘ listOfRestaurents '. If we
+try to search it again it is searching from previous updated list thats the
+problem. simple solution for this instead of filtering the original data we simple
+make a copy to of that original data in our case it is nothing but a ‘ listOfRestaurant
+' and stored the copy with new variable filteredRestaurant .
+//original
+const [listOfRestaurant, setListOfRestaurant] = useState([]);
+//copy
+const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+In our code, when we fetch data using the ‘ fetchData ' function, it's important to
+update the rendering to display the new data. We achieve this by updating the
+state variables ‘ listOfRestaurant ' and ‘ filteredListOfRestaurant ' using functions provided
+Exploring The World!(Namaste-React) 16
+by the ‘ useState() ' hook. Initially, both arrays are empty, but after fetching data,
+we fill them with the retrieved information. otherwise we won’t see any thing on
+the page.
+const fetchData = async () => {
+const data = await fetch(
+"https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.9615398&ln
+g=79.2961468&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+);
+const json = await data.json();
+// here we are filling both the variable with new data with the help of their
+functions.
+setListOfRestaurant(
+json.data.cards[4].card.card.gridElements.infoWithStyle.restaurant
+s
+);
+setFilteredRestaurant(
+json.data.cards[4].card.card.gridElements.infoWithStyle.restaurant
+s
+);
+};
+📢 IMPORTANT:
+here there is two important points to remember
+1) When we need to modify the list Of Restaurants based on
+certain conditions, we're essentially using the original
+data we fetched and stored within the ‘ listOfRestaurant '
+variable. (original)
+2) To display data on the UI, we use a copy of
+‘ listOfRestaurant ' called ‘ filteredRestaurant '. (copy)
+Final code base given below.
+import { useState, useEffect } from "react";
+import RestaurantCard from "./RestaurantCard";
+import Shimmer from "./Shimmer";
+const Body = () => {
+ const [listOfRestaurant, setListOfRestaurant] = useState([]);
+ const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+Exploring The World!(Namaste-React) 17
+ const [searchText, setSearchText] = useState("");
+ useEffect(() => {
+ fetchData();
+ }, []);
+ const fetchData = async () => {
+ const data = await fetch(
+ "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.9615398&lng=79.2
+961468&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+ );
+ const json = await data.json();
+ setListOfRestaurant(
+ json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restauran
+ts
+ );
+ setFilteredRestaurant(
+ json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restauran
+ts
+ );
+ };
+ return listOfRestaurant.length === 0 ? (
+ <Shimmer />
+ ) : (
+ <div className="container body">
+ <div className="filter-btn">
+ <div className="search">
+ <input
+ type="text"
+ className="search-box"
+ value={searchText}
+ onChange={(e) => {
+ setSearchText(e.target.value);
+ }}
+ />
+ <button
+ className="searchBtn"
+ onClick={() => {
+ // filter the Restaurant and update the UI.
+
+ const filteredRestaurant = listOfRestaurant.filter((res) => {
+ return res.info.name
+Exploring The World!(Namaste-React) 18
+ .toLowerCase()
+ .includes(searchText.toLowerCase());
+ });
+ setFilteredRestaurant(filteredRestaurant);
+ }}
+ >
+ Search
+ </button>
+ </div>
+ <button
+ onClick={() => {
+ const filterLogic = listOfRestaurant.filter((res) => {
+ return res.info.avgRating > 4;
+ });
+ setFilteredRestaurant(filterLogic);
+ }}
+ >
+ Top Restaurants
+ </button>
+ </div>
+ <div className="ReastaurantContainer">
+ {filteredRestaurant.map((restaurant) => (
+ <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+ ))}
+ </div>
+ </div>
+ );
+};
+export default Body;
+THANK YOU!
+
+
+
+
+
+
+
+#assignments
+
+Chapter 06 - Exploring the world
+● What is a Microservice?
+● What is Monolith architecture?
+● What is the difference between Monolith and Microservice?
+● Why do we need a useEffect Hook?
+● What is Optional Chaining?
+● What is Shimmer UI?
+● What is the difference between JS expression and JS statement
+● What is Conditional Rendering, explain with a code example
+● What is CORS?
+● What is async and await?
+● What is the use of `const json = await data.json();` in getRestaurants()
+Coding Assignment :
+● Play with the useEffect Hook to see when it is called?(before or after render)
+● Play with dependency array in useEffect Hook
+● Play with the developer console by putting a debugger in render and useEffect
+● Call an actual API to get data
+● Handle Error in your API call
+● Build Shimmer UI when data in not loaded
+● Render your UI with actual API data
+● Make Search functionality work
+● Make a Login Logout button which toggles with a state
