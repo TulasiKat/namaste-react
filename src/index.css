@@ -62,3 +62,13 @@
 .res-card-content{
     padding: 10px;
 }
+.user-card{
+    padding: 10px;
+    border: 1px solid lightgray;
+    width: 200px;
+    height:fit-content;
+}
+.user-card img{
+    width: 100%;
+    height: auto;
+}
