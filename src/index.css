@@ -40,3 +40,25 @@
     display: flex;
     flex-wrap: wrap;
 }
+.description , .ind-res-card h3{
+    margin-top: 12px;
+    word-break: break-all;
+    max-height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+.ind-res-card h3{
+    -webkit-line-clamp: 1;
+}
+.res-menu-container{
+    flex-wrap: nowrap;
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.res-card-content{
+    padding: 10px;
+}

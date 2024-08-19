@@ -1,0 +1,30 @@
+.name-and-rating{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.time-and-cost{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+
+}
+.rest-menu{
+    width: 300px;
+    border-radius: 20px;
+    border: 1px solid rgba(2, 6, 12, 0.15);
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 8px 16px 0px;
+    background: linear-gradient(rgb(255, 255, 255) -6.71%, rgb(235, 235, 242) 56.19%, rgb(223, 223, 231) 106.56%);
+    padding: 0px 16px 16px;
+    border-bottom-left-radius: 36px;
+    border-bottom-right-radius: 36px;
+    width:800px;
+    max-width: 800px;
+    min-height: 800px;
+    margin: 20px auto 0;
+}
+.time-and-cost span{
+    margin-right: 10px;
+    line-height: 2.5;
+}
