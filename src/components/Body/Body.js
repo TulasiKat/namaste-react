@@ -1,5 +1,6 @@
 import { useState , useEffect} from 'react';
 import RestaurantMenu from '../RestraurantMenu/RestaurantMenu.js';
+import useOnlineStatus from '../../utils/useOnlineStatus.js'
 
 
 import RestaurantCard from '../RestaurantCard/RestaurantCard.js';
@@ -10,6 +11,7 @@ import './Body.css';
 const Body = () => {
   const [resList , setresList] = useState([]);
   const [searchvalue , setsearchvalue] = useState("");
+
 
 
   useEffect(()=>{
@@ -34,6 +36,11 @@ const Body = () => {
   const searchValueChanged = (event) => {
     setsearchvalue(event.target.value);
   }
+  const status = useOnlineStatus();
+if (status===false){
+return <h1>Looks like you are offline, please check your internet connection</h1>
+}
+
 
     return resList.length <=0 ? (   
     <div className="body">
