@@ -7,14 +7,14 @@ class UserClass extends Component{
     }
 
     incrementNumber = () => {
-        console.log("button clicked");
+
         this.setState({count:this.state.count+1});
     }
 
     async componentDidMount(){
         const data = await fetch("https://api.github.com/users/akshaysaini");
         const json = await data.json();
-        console.log(json);
+
         this.setState({name:json.login , avatar:json.avatar_url});
         
     }

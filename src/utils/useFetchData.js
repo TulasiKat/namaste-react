@@ -11,8 +11,7 @@ import { useEffect, useState } from "react";
      const fetchMenu = async (fetchUrl) => {
         const menuData = await fetch(fetchUrl);
         const json = await menuData.json();
-        console.log(json.data);
-        console.log(fetchUrl);
+  
         setData(json);
     }
 

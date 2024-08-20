@@ -5,14 +5,13 @@ import useOnlineStatus from '../../utils/useOnlineStatus.js'
 
 import RestaurantCard from '../RestaurantCard/RestaurantCard.js';
 import Shimmer from '../Shimmer/Shimmer.js';
-import './Body.css';
+
 
 
 const Body = () => {
   const [resList , setresList] = useState([]);
   const [searchvalue , setsearchvalue] = useState("");
-
-
+  const [topRatedButtonStatus , settopRatedButtonStatus] = useState(false);
 
   useEffect(()=>{
     fetchdata();
@@ -21,44 +20,45 @@ const Body = () => {
   const fetchdata = async () => {
     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.37240&lng=78.43780&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
     const json = await data.json();
-    console.log(json);
-    // setresList(json.data);
-
     setresList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
 
 
   const topRatedRestFunc = () => {
-    setresList(resList.filter(each => each.info.avgRating > 4.5));
+    settopRatedButtonStatus(!topRatedButtonStatus);
   }
 
 
   const searchValueChanged = (event) => {
     setsearchvalue(event.target.value);
   }
+
   const status = useOnlineStatus();
-if (status===false){
-return <h1>Looks like you are offline, please check your internet connection</h1>
-}
+    if (status===false){
+    return <h1>Looks like you are offline, please check your internet connection</h1>
+  }
 
 
     return resList.length <=0 ? (   
     <div className="body">
     <div className='filter'>
        <button className='filter-btn' onClick={topRatedRestFunc}>Top rated restaurants</button>
-       <input type="search" className="searchInputBox" onChange={searchValueChanged}/>
+       <input type="search" className="m-4 p-4 border border-solid border-black" onChange={searchValueChanged}/>
     </div>
     <Shimmer/>
    </div>
    ) : (
 
       <div className="body">
-       <div className='filter'>
-          <button className='filter-btn' onClick={topRatedRestFunc}>Top rated restaurants</button>
-          <input type="search" className="searchInputBox" onChange={searchValueChanged}/>
+       <div className='flex justify-between px-4 pb-6 pt-7'>
+          <button className='filter-btn bg-green-50 hover:bg-green-100 rounded-md m-4 p-4 border border-solid border-black' onClick={topRatedRestFunc}>{topRatedButtonStatus? "Show all restaurants" : "Show top rated restaurants"}</button>
+          <input type="search" className="m-4 p-4 border border-solid border-black rounded-md" onChange={searchValueChanged} placeholder='search here..'/>
        </div>
-        <div className="res-container"> 
-            {resList.filter(each=>each.info.name.toLowerCase().includes(searchvalue.toLowerCase())).map(each=><RestaurantCard resData = {each.info} key={"resto-"+each.info.id}/>)}
+        <div className="flex flex-wrap"> 
+        {topRatedButtonStatus ? resList.filter(each=>each.info.name.toLowerCase().includes(searchvalue.toLowerCase())).filter(each => each.info.avgRating >= 4.5).map(each=><RestaurantCard resData = {each.info} key={"resto-"+each.info.id}/>) :
+        resList.filter(each=>each.info.name.toLowerCase().includes(searchvalue.toLowerCase())).map(each=><RestaurantCard resData = {each.info} key={"resto-"+each.info.id}/>)
+        }
+          
         </div>
       </div>
     )
