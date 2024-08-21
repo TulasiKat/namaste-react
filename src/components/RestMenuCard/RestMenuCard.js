@@ -1,11 +1,12 @@
+import { useState } from "react";
 import { CDN_URL } from "../../utils/constants.js";
 
 
 const RestMenuCard = (props) => {
+  const [itemCount , setItemCount] = useState(0);
   const { resData } = props;
   const {
     name,
-    category,
     ratings,
     costForTwo,
     imageId,
@@ -13,17 +14,34 @@ const RestMenuCard = (props) => {
     offerTags,
     price,
   } = resData;
-  return (
-    <div className="m-4 p-4 sm:w-4/12 lg:w-2/12 border border-solid border-gray-200 bg-gray-50 rounded-lg h-[450px] hover:bg-gray-200">
-      <img className=" rounded-lg" src={CDN_URL + imageId} alt="res-logo" />
-      <div>
-      <h3 className='font-bold py-2 text-xl text-ellipsis overflow-hidden truncate'>{name}</h3>
-        <h5>category: {category} </h5>
-        <h5>{costForTwo}</h5>
-        <p>{ratings.aggregatedRating.rating} rating</p>
-        <p className="text-ellipsis overflow-hidden truncate">{description}</p>
-      </div>
 
+  const increaseItemCount = () => {
+  
+    setItemCount(itemCount+1);
+ 
+  }
+
+  const decreaseItemCount = () => {
+
+    setItemCount(Math.max(0 , itemCount-1));
+  }
+
+  return (
+    <div className="m-0 p-4 w-[100%] border border-solid border-gray-200 bg-gray-50 flex justify-between">
+     
+      <div className="w-8/12">
+          <h3 className='font-bold py-2 text-xl text-ellipsis overflow-hidden truncate'>{name}</h3>
+          <h5>₹ {price/100}</h5>
+          <p className="text-xs font-bold text-green-700"><span className="font-bold text-2xl">⋆</span> {ratings.aggregatedRating.rating} rating</p>
+          <h5>{costForTwo}</h5>
+         
+          <p className="text-ellipsis overflow-hidden text-sm">{description}</p>
+      </div>
+      <div className="flex flex-col h-[200px] w-3/12 relative">
+        <img className="h-[150px]  rounded-lg " src={CDN_URL + imageId} alt="res-logo" />
+        <button className="absolute bottom-[44px] bg-white rounded-lg self-center p-2 border border-solid border-gray-400 text-green-600 font-extrabold"><span onClick={decreaseItemCount} className="w-[30px] h-[30px] inline-block">-</span>{itemCount===0 ? "ADD" : itemCount} <span onClick={increaseItemCount} className="w-[30px] h-[30px] inline-block">+</span></button>
+      </div>
+     
        
       </div>
 
