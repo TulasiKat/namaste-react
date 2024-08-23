@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {LOGO_URL} from '../../utils/constants.js';
 import useOnlineStatus from '../../utils/useOnlineStatus.js';
 import UserContext from '../../utils/UserContext.js';
+import { useSelector } from 'react-redux';
 
 
 const Header = () => {
@@ -15,7 +16,11 @@ const loginStatusChange = () => {
 const onlineStatus = useOnlineStatus();
 
 const contextData = useContext(UserContext);
-console.log(contextData)
+
+
+
+const cartData = useSelector((store) => store.cart.items);
+
 
     return (
       <div className="flex justify-between items-center bg-green-50 shadow-lg my-5">
@@ -29,7 +34,7 @@ console.log(contextData)
             <li className="pr-4"><Link to="/grocery">Grocery</Link></li>
             <li className="pr-4"><Link to="/about">About Us</Link></li>
             <li className="pr-4"><Link to="/contact">Contact Us</Link></li>
-            <li className="pr-4"><Link to="/cart">Cart</Link></li>
+            <li className="pr-4 font-extrabold text-lg"><Link to="/cart">🛒 ({cartData.length} items)</Link></li>
             
             <li className="pr-4"><button onClick={loginStatusChange}>{loginStatus ? "Logout" : "Login"}</button></li>
             <li className='font-extrabold pr-4'>{contextData.loggedinUser}</li>
