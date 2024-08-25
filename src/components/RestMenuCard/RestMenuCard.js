@@ -31,7 +31,7 @@ const RestMenuCard = (props) => {
   }
 
   return (
-    <div className="m-0 p-4 w-[100%] border border-solid border-gray-200 bg-gray-50 flex justify-between">
+    <div className="m-0 p-4 w-[100%] border border-solid border-gray-200 bg-gray-50 flex justify-between" data-testid="foodCard">
      
       <div className="w-8/12">
           <h3 className='font-bold py-2 text-xl text-ellipsis overflow-hidden truncate'>{name}</h3>
@@ -43,7 +43,7 @@ const RestMenuCard = (props) => {
       </div>
       <div className="flex flex-col h-[200px] w-3/12 relative">
         <img className="h-[150px]  rounded-lg " src={CDN_URL + imageId} alt="res-logo" />
-        <button className="absolute bottom-[44px] bg-white rounded-lg self-center p-2 border border-solid border-gray-400 text-green-600 font-extrabold"><span onClick={decreaseItemCount} className="w-[30px] h-[30px] inline-block">-</span>{itemCount===0 ? "ADD" : itemCount} <span onClick={()=>increaseItemCount(name)} className="w-[30px] h-[30px] inline-block">+</span></button>
+        <button className="absolute bottom-[44px] bg-white rounded-lg self-center p-2 border border-solid border-gray-400 text-green-600 font-extrabold"><span data-testid="decrease" onClick={decreaseItemCount} className="w-[30px] h-[30px] inline-block">-</span>{itemCount===0 ? "ADD" : itemCount} <span data-testid="increase" onClick={()=>increaseItemCount(name)} className="w-[30px] h-[30px] inline-block">+</span></button>
       </div>
      
        

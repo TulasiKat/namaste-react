@@ -1,0 +1,79 @@
+{
+    "id": "681605",
+    "name": "LeanCrust Pizza- ThinCrust Experts",
+    "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/5/23/e5e23da8-f5d8-4782-bbe2-a8b28f64cad0_681605.JPG",
+    "locality": "GUMMA KONDA COLONY",
+    "areaName": "Attapur",
+    "costForTwo": "₹300 for two",
+    "cuisines": [
+        "Pizzas",
+        "Italian",
+        "Desserts"
+    ],
+    "avgRating": 4.3,
+    "parentId": "11216",
+    "avgRatingString": "4.3",
+    "totalRatingsString": "100+",
+    "sla": {
+        "deliveryTime": 25,
+        "lastMileTravel": 2.9,
+        "serviceability": "SERVICEABLE",
+        "slaString": "20-30 mins",
+        "lastMileTravelString": "2.9 km",
+        "iconType": "ICON_TYPE_EMPTY"
+    },
+    "availability": {
+        "nextCloseTime": "2024-08-26 02:00:00",
+        "opened": true
+    },
+    "badges": {
+        "textExtendedBadges": [
+            {
+                "iconId": "guiltfree/GF_Logo_android_3x",
+                "shortDescription": "options available",
+                "fontColor": "#7E808C"
+            }
+        ]
+    },
+    "isOpen": true,
+    "type": "F",
+    "badgesV2": {
+        "entityBadges": {
+            "imageBased": {},
+            "textBased": {},
+            "textExtendedBadges": {
+                "badgeObject": [
+                    {
+                        "attributes": {
+                            "description": "",
+                            "fontColor": "#7E808C",
+                            "iconId": "guiltfree/GF_Logo_android_3x",
+                            "shortDescription": "options available"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "aggregatedDiscountInfoV3": {
+        "header": "ITEMS",
+        "subHeader": "AT ₹139"
+    },
+    "differentiatedUi": {
+        "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+        "differentiatedUiMediaDetails": {
+            "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+            "lottie": {},
+            "video": {}
+        }
+    },
+    "reviewsSummary": {},
+    "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+    "restaurantOfferPresentationInfo": {},
+    "externalRatings": {
+        "aggregatedRating": {
+            "rating": "--"
+        }
+    },
+    "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+}

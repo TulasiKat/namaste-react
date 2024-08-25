@@ -11,6 +11,7 @@ import Shimmer from '../Shimmer/Shimmer.js';
 
 const Body = () => {
   const [resList , setresList] = useState([]);
+
   const [searchvalue , setsearchvalue] = useState("");
   const [topRatedButtonStatus , settopRatedButtonStatus] = useState(false);
 
@@ -60,7 +61,7 @@ const Body = () => {
        <div className='flex justify-between px-4 pb-6 pt-7'>
           <button className='filter-btn bg-green-50 hover:bg-green-100 rounded-md m-4 p-4 border border-solid border-black' onClick={topRatedRestFunc}>{topRatedButtonStatus? "Show all restaurants" : "Show top rated restaurants"}</button>
           <label>Username: <input type="text" className="m-4 p-4 border border-solid border-black rounded-md" onChange={nameGiven} placeholder='Enter name here..'/> </label>
-          <input type="search" className="m-4 p-4 border border-solid border-black rounded-md" onChange={searchValueChanged} placeholder='search here..'/>
+          <input type="search" data-testid = "searchInput" className="m-4 p-4 border border-solid border-black rounded-md" onChange={searchValueChanged} placeholder='search here..'/>
 
        </div>
         <div className="flex flex-wrap"> 
